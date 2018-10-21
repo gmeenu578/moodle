@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>StudentData</title>
+<link rel="stylesheet" href="../static/studentdata/css/style.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript" src = "../static/studentdata/js/studentdata.js"></script>
+</head>
+<body onload = "fetch()">
+	<!-- <script type="text/javascript">
+		var cookie = getCookies('userid');
+		if(cookie == ""){
+			window.location = 'login.html';
+		}
+	</script> -->
+
+<div id = "loader" ></div>
+<div id = "table" ></div>
+<script type="text/javascript">
+document.getElementById('table').style.visibility="hidden";
+</script>
+<form id = "logout">
+	<script type="text/javascript">
+	document.getElementById('logout').style.visibility="hidden";
+	</script>
+  <label>
+  <input type="button" value="Logout" onclick = "clearcookies('userid')" />
+  </label>
+</form>	
+
+</body>
