@@ -6,16 +6,12 @@ margin: -10px -50px;
 text-align:center;
 border-radius: 10px 10px 0 0;
 }
-hr{
-margin: 10px -50px;
-border: 0;
-border-top: 1px solid #ccc;
-margin-bottom: 40px;
-}
+
 div.container{
 width: 900px;
 height: 610px;
 margin:35px auto;
+margin-top:30px;
 font-family: 'Raleway', sans-serif;
 }
 div.main{
@@ -75,4 +71,26 @@ outline:none;
 }
 input[type=button]:hover{
 background: linear-gradient(#ffdd7f 5%, #ffbc00 100%);
+}
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color : green;
+}
+
+a:active {
+    text-decoration: underline;
+    color = #99004d
+}
+#error
+{
+	color : red;
+	font-size = 10px;
 }

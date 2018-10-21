@@ -3,7 +3,7 @@ function validate()
 
 var username = document.getElementById("username").value;
 var password = document.getElementById("password").value;
-if(username == "Enter USN" || password == "Default:USN")
+if(username == "username" || password == "password")
 {
 	//alert("Username or Password field is empty!");
 	document.getElementById("error").innerHTML = "username or password empty!"	;
@@ -24,7 +24,9 @@ function processRequest(){
 		if(response['status'] == 0)
 			document.getElementById("error").innerHTML = "Incorrect Combination";
 		else if(response['status'] == 1)
-			window.location = "studentdata.html";
+		{
+			window.location = "AIM_home.html";
+		}
 		}
 	}
 
@@ -37,7 +39,7 @@ function inputFocus(i) {
 function inputBlur(i) {
     if (i.value == "") { i.value = i.defaultValue; i.style.color = "#888"; }
 }
-function getCookie(cname) {
+function getCookies(cname) {
 		    var name = cname + "=";
 		    var decodedCookie = decodeURIComponent(document.cookie);
 		    var ca = decodedCookie.split(';');

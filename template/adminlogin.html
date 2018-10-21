@@ -1,20 +1,29 @@
 <html>
 <head>
-<title>LOGIN</title>
+<title>adminlogin</title>
 <!-- Include CSS File Here -->
 <link rel="stylesheet" href="../static/adminlogin/css/style.css"/>
 <!-- Include JS File Here -->
-<script src="../static/adminlogin/js/login.js"></script>
+<script src="../static/adminlogin/js/adminlogin.js"></script>
 </head>
-<body background="./index.jpg">
+<body>
+		<script type="text/javascript">
+		var cookie = getCookies('userid');
+		if(cookie != ""){
+			window.location = 'AIM_home.html';
+		}
+	</script>
 <div class="container">
 <div class="main">
-<h2>ADMINISTRATOR LOGIN</h2>
+<h2>Administrator Login</h2>
 <form id="form_id" method="post" name="myform">
-<label>User Name :</label>
-<input type="text" name="username" id="username"/>
+<label><br>User Name :</br></label>
+<input type="text" name="username" id="username" value = "username"
+		onfocus="inputFocus(this)" onblur="inputBlur(this)" onkeypress="searchkeypress()"/><span id ="error"></span>
+		<br>
 <label>Password :</label>
-<input type="password" name="password" id="password"/>
+<input type="password" name="password" id="password" value = "password"
+        onfocus="inputFocus(this)" onblur="inputBlur(this)" onkeypress="searchkeypress()"/>
 <input type="button" value="Login" id="submit" onclick="validate()"/>
 </form>
 </div>

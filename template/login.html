@@ -1,29 +1,31 @@
 <html>
 <head>
-<title>LOGIN</title>
-<!-- Include CSS File Here -->
-<link rel="stylesheet" href="../static/login/css/style.css">
-<!-- Include JS File Here -->
+<title>login</title>
+<link rel="stylesheet" href="../static/login/css/style.css"/>
 <script src="../static/login/js/login.js"></script>
 </head>
-<body background="./index.jpg">
+<body>
+	<script type="text/javascript">
+		var cookie = getCookie('userid');
+		if(cookie != ""){
+			window.location = 'studentdata.html';
+		}
+	</script>
 <div class="container">
 <div class="main">
-<h2>NMAM Institue Of Technology</h2>
-<p>login as administrator <a href="adminlogin.html">admin login</a> ?</p>
-<form id="form_id" method="post" name="myform">
+<h2>NMAM Institute of Technology</h2>
+<b><br><a href="adminlogin.html">login as Administrator?</a></br></b>
+<form>
 <label>User Name :</label>
-<!-- <input type="text" name="username" id="username"/> -->
-<input type="text" name="username" id="username" value = "ENTRY USN"
-		onfocus="inputFocus(this)" onblur="inputBlur(this)"/>
+<input type="text" name="username" id="username" value = "Enter USN"
+		onfocus="inputFocus(this)" onblur="inputBlur(this)" onkeypress="searchkeypress()" /> <span id ="error" > </span>
+		<br>
 <label>Password :</label>
-<!-- <input type="password" name="password" id="password"/> -->
 <input type="password" name="password" id="password" value = "Default:USN"
-        onfocus="inputFocus(this)" onblur="inputBlur(this)"/>
+        onfocus="inputFocus(this)" onblur="inputBlur(this)" onkeypress="searchkeypress()" />
 <input type="button" value="Login" id="submit" onclick="validate()"/>
 </form>
 </div>
 </div>
 </body>
 </html>
-
