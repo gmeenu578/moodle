@@ -4,56 +4,67 @@ from flask_cors import CORS
 import datetime
 from datetime import timedelta 
 
+
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
-@app.route('/api/login', methods=['POST'])
-def login():
+@app.route('/api/login/student', methods=['POST'])
+def studentlogin():
     data = request.get_json();
     username = data['username']
     password = data['password']
     cursor , conn = connection()
     sql = "select count(*) from credentials where userid = %s and password = %s" 
     cursor.execute(sql,(username , password))
-    rows = [x for x in cursor]
-    cols = [x[0] for x in cursor.description]
-    ds = []
-    for row in rows:
-        d = {}
-        for prop, val in zip(cols, row):
-            d[prop] = val
-        ds.append(d)   
-    json_data = json.dumps(ds)
-    json_data = json_data[1:-1]
-    json_obj = json.loads(json_data)
     conn.close()
-    if json_obj['count(*)'] > 0 :
+    count = cursor.fetchone()[0]
+    if count > 0 :
         res = make_response(jsonify({'status' : '1'}))
         expire_date_time = datetime.datetime.today() + timedelta(days=30)
         expire_date_time = expire_date_time.strftime("%d %b %Y %H:%M:%S")
-        res.set_cookie('userid',username, expires=expire_date_time)
+        res.set_cookie('userid',username,  expires=expire_date_time)
+        res.set_cookie('type','student',  expires=expire_date_time)
         return res
     else :
         return jsonify({"status" : '0'})
 
-@app.route('/api/fetchname' , methods = ['POST' , 'GET'])
-def fetchname():
+@app.route('/api/login/admin', methods=['POST'])
+def adminlogin():
+    data = request.get_json();
+    username = data['username']
+    password = data['password']
+    cursor , conn = connection()
+    sql = "select count(*) from admins where userid = %s and password = %s" 
+    cursor.execute(sql,(username , password))
+    conn.close()
+    count = cursor.fetchone()[0]
+    if count > 0 :
+        res = make_response(jsonify({'status' : '1'}))
+        expire_date_time = datetime.datetime.today() + timedelta(days=30)
+        expire_date_time = expire_date_time.strftime("%d %b %Y %H:%M:%S")
+        res.set_cookie('userid',username, expires=expire_date_time)
+        res.set_cookie('type','admin',  expires=expire_date_time)
+        return res
+    else :
+        return jsonify({"status" : '0'})
+
+@app.route('/api/fetchname/student' , methods = ['POST' , 'GET'])
+def fetchstudentname():
     username = request.cookies.get('userid')
     cursor , conn = connection()
     sql = "select name from credentials where userid = %s "
     cursor.execute(sql , (username,))
-    rows = [x for x in cursor]
-    cols = [x[0] for x in cursor.description]
-    ds = []
-    for row in rows:
-        d = {}
-        for prop, val in zip(cols, row):
-            d[prop] = val
-        ds.append(d)   
-    json_data = json.dumps(ds)
-    json_data = json_data[1:-1]
-    json_obj = json.loads(json_data)
     conn.close()
-    return json_obj['name']
+    return cursor.fetchone()[0]
+
+@app.route('/api/fetchname/admin' , methods = ['POST' , 'GET'])
+def fetchadminname():
+    username = request.cookies.get('userid')
+    cursor , conn = connection()
+    sql = "select name from admins where userid = %s "
+    cursor.execute(sql , (username,))
+    conn.close()
+    return cursor.fetchone()[0]
+
 
 @app.route('/api/addcourse' , methods = ['POST','GET'])
 def addcourse():

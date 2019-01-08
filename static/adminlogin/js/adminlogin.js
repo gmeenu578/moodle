@@ -9,7 +9,7 @@ if(username == "username" || password == "password")
 	document.getElementById("error").innerHTML = "username or password empty!"	;
 	return; 
 }
-var url = 'http://localhost:4000/api/login';
+var url = 'http://localhost:4000/api/login/admin';
 var xml = new XMLHttpRequest();
 xml.open('POST' , url ,true);
 xml.withCredentials = true;

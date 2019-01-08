@@ -1,30 +1,41 @@
 <html>
 <head>
 <title>StudentData</title>
+<link rel="icon" href="../images/icon.jpg" type="image/gif" >
 <link rel="stylesheet" href="../static/studentdata/css/style.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script language="JavaScript" type="text/javascript" src = "../static/studentdata/js/studentdata.js"></script>
 </head>
-<body onload = "fetch()">
-	<!-- <script type="text/javascript">
-		var cookie = getCookies('userid');
-		if(cookie == ""){
-			window.location = 'login.html';
-		}
-	</script> -->
-
+<body onload = "fetchdata()">
+    <script type="text/javascript">
+    var cookie = getCookies('userid');
+    var type = getCookies('type');
+    if(cookie == "" || type == ""){
+      window.location = 'login.html';
+    }
+    else if (cookie != "" && type == "admin"){
+      logout()
+    }
+    else fetchname();
+    </script>
+<div class = "title">
+<h1> Academic Information System,NMAMIT </h1>
+<b><p id = "name">WELCOME </p></b>
+<form id = "logout">
+  <label>
+  <input type="button" value="Logout" onclick = "logout()" />
+  </label>
+</form>	
+ <a id = "changepassword" href = "changepassword_student.html"><b>Change Password</b></a>
+</div>
 <div id = "loader" ></div>
-<div id = "table" ></div>
+<div id = "table" >
+    <table id="table-marks" style="color:#333333;border-collapse:collapse; margin-top: 40px">
+</table>
+</div>
 <script type="text/javascript">
 document.getElementById('table').style.visibility="hidden";
 </script>
-<form id = "logout">
-	<script type="text/javascript">
-	document.getElementById('logout').style.visibility="hidden";
-	</script>
-  <label>
-  <input type="button" value="Logout" onclick = "clearcookies('userid')" />
-  </label>
-</form>	
+
 
 </body>

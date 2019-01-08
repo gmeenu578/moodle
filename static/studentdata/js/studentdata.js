@@ -33,3 +33,9 @@ function getCookies(cname) {
         }
         return "";
     }
+function logout(){
+
+clearcookies('userid');
+clearcookies('type');
+window.location = "login.html"
+}

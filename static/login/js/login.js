@@ -1,6 +1,5 @@
 function validate()
 {
-
 var username = document.getElementById("username").value;
 var password = document.getElementById("password").value;
 if(username == "Enter USN" || password == "Default:USN")
@@ -9,11 +8,11 @@ if(username == "Enter USN" || password == "Default:USN")
 	document.getElementById("error").innerHTML = "username or password empty!"	;
 	return; 
 }
-var url = 'http://localhost:4000/api/login';
+var url = 'http://localhost:4000/api/login/student';
 var xml = new XMLHttpRequest();
 xml.open('POST' , url ,true);
-xml.withCredentials = true;
- xml.setRequestHeader( 'Access-Control-Allow-Origin', '*');
+xml.withCredentials = true;//to allow cookies
+ xml.setRequestHeader( 'Access-Control-Allow-Origin', '*');//to allow cross origin
 xml.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 xml.send(JSON.stringify({ 'username': username, 'password': password}));
 xml.onreadystatechange = processRequest;

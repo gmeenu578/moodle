@@ -9,8 +9,12 @@
 <body>
 		<script type="text/javascript">
 		var cookie = getCookies('userid');
-		if(cookie != ""){
+		var type = getCookies('type');
+		if(cookie != "" && type =="admin"){
 			window.location = 'AIM_home.html';
+		}
+		else if(cookie != "" && type == "student" ){
+			window.location = 'studentdata.html';
 		}
 	</script>
 <div class="container">
