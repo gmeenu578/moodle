@@ -22,12 +22,11 @@ xhr.addEventListener("readystatechange", function () {
   	document.getElementById("name").textContent +=this.responseText;
   }
 });
-
-xhr.open("GET", "http://localhost:4000/api/fetchname");
+xhr.open("GET", "http://localhost:4000/api/fetchname/admin");
 xhr.setRequestHeader( 'Access-Control-Allow-Origin', '*');
 xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 xhr.send();
-}		
+}	
 function clearcookies(cname)
 {
 	 console.log('clearcookies');

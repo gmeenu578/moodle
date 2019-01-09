@@ -28,109 +28,109 @@ nav {
 width: 98%;
 height: 60px;
 margin-top: 15px;  
-  display: block;
-  text-align: center;
+display: block;
+text-align: center;
 }
 nav ul {
-  margin: 0;
-  padding:0;
-  list-style: none;
+margin: 0;
+padding:0;
+list-style: none;
 }
 .nav a {
-  display:block; 
-  background: #111; 
-  color: #fff; 
-  text-decoration: none;
-  padding: 0.8em 1.8em;
-  text-transform: uppercase;
-  font-size: 100%;
-  letter-spacing: 2px;
-  text-shadow: 0 -1px 0 #000;
-  position: relative;
+display:block; 
+background: #111; 
+color: #fff; 
+text-decoration: none;
+padding: 0.8em 1.8em;
+text-transform: uppercase;
+font-size: 100%;
+letter-spacing: 2px;
+text-shadow: 0 -1px 0 #000;
+position: relative;
 }
 .nav{  
-  vertical-align: top; 
-  display: inline-block;
-  box-shadow: 
-    1px -1px -1px 1px #000, 
-    -1px 1px -1px 1px #fff, 
-    0 0 6px 3px #fff;
-  border-radius:6px;
+vertical-align: top; 
+display: inline-block;
+box-shadow: 
+  1px -1px -1px 1px #000, 
+  -1px 1px -1px 1px #fff, 
+  0 0 6px 3px #fff;
+border-radius:6px;
 }
 .nav li {
-  position: relative;
-  margin-left: 0px;
-  margin-top: 20px;
+position: relative;
+margin-left: 0px;
+margin-top: 20px;
 }
 .nav > li { 
-  float: left; 
-  border-bottom: 4px #aaa solid; 
-  margin-right: 1px; 
+float: left; 
+border-bottom: 4px #aaa solid; 
+margin-right: 1px; 
 } 
 .nav > li > a { 
-  margin-bottom: 1px;
-  box-shadow: inset 0 2em .33em -0.5em #555; 
+margin-bottom: 1px;
+box-shadow: inset 0 2em .33em -0.5em #555; 
 }
 .nav > li:hover, 
 .nav > li:hover > a { 
-  border-bottom-color: orange;
+border-bottom-color: orange;
 }
 .nav li:hover > a { 
-  color:orange; 
+color:orange; 
 }
 .nav > li:first-child { 
-  border-radius: 4px 0 0 4px;
+border-radius: 4px 0 0 4px;
 } 
 .nav > li:first-child > a { 
-  border-radius: 4px 0 0 0;
+border-radius: 4px 0 0 0;
 }
 .nav > li:last-child { 
-  border-radius: 0 0 4px 0; 
-  margin-right: 0;
+border-radius: 0 0 4px 0; 
+margin-right: 0;
 } 
 .nav > li:last-child > a { 
-  border-radius: 0 4px 0 0;
+border-radius: 0 4px 0 0;
 }
 .nav li a:first-child:nth-last-child(2):before { 
-  content: ""; 
-  position: absolute; 
-  height: 0; 
-  width: 0; 
-  border: 5px solid transparent; 
-  top: 50% ;
-  right:5px;  
- }
+content: ""; 
+position: absolute; 
+height: 0; 
+width: 0; 
+border: 5px solid transparent; 
+top: 50% ;
+right:5px;  
+}
 
- /*submenu positioning*/
- .nav ul {
-  position: absolute;
-  white-space: nowrap;
-  border-bottom: 5px solid  orange;
-  z-index: 1;
-  left: -99999em;
+/*submenu positioning*/
+.nav ul {
+position: absolute;
+white-space: nowrap;
+border-bottom: 5px solid  orange;
+z-index: 1;
+left: -99999em;
 }
 .nav > li:hover > ul {
-  left: auto;
-  margin-top: 5px;
-  min-width: 100%;
+left: auto;
+margin-top: 5px;
+min-width: 100%;
 }
 
 /* arrow hover styling */
 .nav > li > a:first-child:nth-last-child(2):before { 
-  border-top-color: #aaa; 
+border-top-color: #aaa; 
 }
 .nav > li:hover > a:first-child:nth-last-child(2):before {
-  border: 5px solid transparent; 
-  border-bottom-color: orange; 
-  margin-top:-5px
+border: 5px solid transparent; 
+border-bottom-color: orange; 
+margin-top:-5px
 }
 input[type = button]
 {
 
-   position:fixed;
-   right:30px;
-   top:20px;
-   font-size: 17px;
+ position:fixed;
+ right:30px;
+ top:20px;
+ font-size: 17px;
 background: linear-gradient(##3c3c3 5%, #dbdcd38f 100%);
 border: 1px solid #bdb9ae;
 color: #4E4D4B;
@@ -146,19 +146,62 @@ background: linear-gradient(#a6a6a6 10%,  #ffe6e6 100%);
 }
 #name
 {
-  text-align: centre;
+text-align: centre;
 margin-top: -8px;
 margin-left: -10px;
 font-size: 25px;
 font-weight: bold;
 color : #542854 ;
 }
-img {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 5px;
-    width: 98%;
-    height: 50%;
-    margin-left: 3px;
+img
+{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 98%;
+  height: 50%;
+  margin-left: 3px;
 
+}
+#changepassword
+{
+ position:fixed;
+ right:30px;
+ top:80px;
+ font-size: 17px;
+text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color : green;
+}
+
+a:active {
+  text-decoration: underline;
+  color = #542854;
+}
+#newadmin
+{
+ position:fixed;
+ right:30px;
+ top:100px;
+ font-size: 17px;
+text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color : green;
+}
+
+a:active {
+  text-decoration: underline;
+  color = #542854;
 }
