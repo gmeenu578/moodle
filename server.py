@@ -65,6 +65,47 @@ def fetchadminname():
     conn.close()
     return cursor.fetchone()[0]
 
+@app.route('/api/changepassword/admin' , methods = ['POST','GET']) 
+def changepassword_admin():
+    username = request.cookies.get('userid') 
+    data = request.get_json()
+    currentpassword = data['currentpassword']
+    newpassword = data['newpassword']
+    cursor , conn  = connection()
+    sql = "select password from admins where userid = %s"
+    cursor.execute(sql,(username,))
+    conn.close()
+    password = cursor.fetchone()[0]
+    if password != currentpassword :
+        return jsonify({"status" : 'Incorrect current password'})
+    elif password == currentpassword :
+        cursor , conn  = connection()
+        sql = "update admins set password = %s where userid = %s"
+        cursor.execute(sql,(newpassword,username))
+        conn.commit()
+        conn.close()
+        return jsonify({"status" : 'Password is changed'})
+
+@app.route('/api/changepassword/student' , methods = ['POST','GET'])
+def changepassword_student():
+    username = request.cookies.get('userid')
+    data = request.get_json()
+    currentpassword = data['currentpassword']
+    newpassword = data['newpassword']
+    cursor , conn  = connection()
+    sql = "select password from credentials where userid = %s"
+    cursor.execute(sql,(username,))
+    conn.close()
+    password = cursor.fetchone()[0]
+    if password != currentpassword :
+        return jsonify({"status" : 'Incorrect current password'})
+    elif password == currentpassword :
+        cursor , conn  = connection()
+        sql = "update credentials set password = %s where userid = %s"
+        cursor.execute(sql,(newpassword,username))
+        conn.commit()
+        conn.close()
+        return jsonify({"status" : 'Password is changed'})
 
 @app.route('/api/addcourse' , methods = ['POST','GET'])
 def addcourse():
