@@ -4,7 +4,6 @@ from flask_cors import CORS
 import datetime
 from datetime import timedelta 
 
-
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 @app.route('/api/login/student', methods=['POST'])
@@ -65,27 +64,43 @@ def fetchadminname():
     conn.close()
     return cursor.fetchone()[0]
 
-@app.route('/api/changepassword/admin' , methods = ['POST','GET']) 
-def changepassword_admin():
-    username = request.cookies.get('userid') 
+@app.route('/api/addcourse' , methods = ['POST','GET'])
+def addcourse():
     data = request.get_json()
-    currentpassword = data['currentpassword']
-    newpassword = data['newpassword']
-    cursor , conn  = connection()
-    sql = "select password from admins where userid = %s"
-    cursor.execute(sql,(username,))
-    conn.close()
-    password = cursor.fetchone()[0]
-    if password != currentpassword :
-        return jsonify({"status" : 'Incorrect current password'})
-    elif password == currentpassword :
+    coursecode = data['coursecode']
+    coursename = data['coursename']
+    COLUMN_NAME = coursecode + '_' + coursename.replace(' ', '_')
+    try:
         cursor , conn  = connection()
-        sql = "update admins set password = %s where userid = %s"
-        cursor.execute(sql,(newpassword,username))
+        sql = "insert into courses values(%s , %s)"
+        cursor.execute(sql , (coursecode , COLUMN_NAME))
+        sql = "alter table studentsdata add {0} varchar(30) DEFAULT 'no'".format(COLUMN_NAME);
+        cursor.execute(sql)
         conn.commit()
         conn.close()
-        return jsonify({"status" : 'Password is changed'})
+        return jsonify({"status" : 'Course added'})
+    except:
+        return jsonify({"status" : 'Already exists'})
 
+
+@app.route('/api/addstudent' , methods = ['POST','GET'])
+def addstudent():
+    data = request.get_json()
+    username = data['usn']
+    name = data['name']
+    try:
+        cursor , conn  = connection()
+        sql = "insert into credentials values(%s , %s , %s)" 
+        cursor.execute(sql,(username,username , name))
+        conn.commit()
+        sql = "insert into studentsdata (usn) values(%s)"
+        cursor.execute(sql,(username,))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return jsonify({"status" : 'Student added'})
+    except:
+        return jsonify({"status" : 'Already exists'})
 @app.route('/api/changepassword/student' , methods = ['POST','GET'])
 def changepassword_student():
     username = request.cookies.get('userid')
@@ -105,47 +120,45 @@ def changepassword_student():
         cursor.execute(sql,(newpassword,username))
         conn.commit()
         conn.close()
-        return jsonify({"status" : 'Password is changed'})
+        return jsonify({"status" : 'Password changed'})
 
-@app.route('/api/addcourse' , methods = ['POST','GET'])
-def addcourse():
+
+@app.route('/api/changepassword/admin' , methods = ['POST','GET'])
+def changepassword_admin():
+    username = request.cookies.get('userid')
     data = request.get_json()
-    coursecode = data['coursecode']
-    coursename = data['coursename']
-    try:
+    currentpassword = data['currentpassword']
+    newpassword = data['newpassword']
+    cursor , conn  = connection()
+    sql = "select password from admins where userid = %s"
+    cursor.execute(sql,(username,))
+    conn.close()
+    password = cursor.fetchone()[0]
+    if password != currentpassword :
+        return jsonify({"status" : 'Incorrect current password'})
+    elif password == currentpassword :
         cursor , conn  = connection()
-        sql = "insert into courses values(%s , %s)" 
-        cursor.execute(sql,(coursecode,coursename))
-        conn.commit()
-        sql = "alter table studentsdata add %s INT DEFAULT -1" % (coursecode)
-        cursor.execute(sql)
+        sql = "update admins set password = %s where userid = %s"
+        cursor.execute(sql,(newpassword,username))
         conn.commit()
         conn.close()
-        return jsonify({"status" : 'Course added'})
-    except:
-        return jsonify({"status" : 'Already exists'})
+        return jsonify({"status" : 'Password changed'})
 
-    
-@app.route('/api/addstudent' , methods = ['POST','GET'])
-def addstudent():
+@app.route('/api/newadmin' , methods = ['POST','GET'])
+def newadmin():
     data = request.get_json()
-    username = data['usn']
+    username = data['username']
     name = data['name']
+    password = data['password']
     try:
         cursor , conn  = connection()
-        sql = "insert into credentials values(%s , %s , %s)" 
-        cursor.execute(sql,(username,username , name))
+        sql = "insert into admins values(%s , %s , %s)" 
+        cursor.execute(sql,(username,name , password))
         conn.commit()
-        sql = "insert into studentsdata (usn) values(%s)"
-        cursor.execute(sql,(username,))
-        # print(cursor.fetchall())
-        conn.commit()
-        cursor.close()
         conn.close()
-        return jsonify({"status" : 'Student added'})
+        return jsonify({"status" : 'admin added'})
     except:
         return jsonify({"status" : 'Already exists'})
-
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=4000, debug=True)

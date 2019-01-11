@@ -22,14 +22,15 @@ xhr.addEventListener("readystatechange", function () {
   	document.getElementById("name").textContent +=this.responseText;
   }
 });
+
 xhr.open("GET", "http://localhost:4000/api/fetchname/admin");
 xhr.setRequestHeader( 'Access-Control-Allow-Origin', '*');
 xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 xhr.send();
-}	
+}		
 function clearcookies(cname)
 {
-	 console.log('clearcookies');
+
 	var cookies = document.cookie.split(";");
 
 	for (var i = 0; i < cookies.length; i++) {
@@ -38,8 +39,9 @@ function clearcookies(cname)
         var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
         document.cookie = cname + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT ; path = /;";
     }
-    window.location = "adminlogin.html";
+
 }
+
 function logout(){
 clearcookies('userid');
 clearcookies('type');

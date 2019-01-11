@@ -13,7 +13,7 @@ function getCookies(cname) {
 		    }
     		return "";
 		}
-		
+
 function inputFocus(i) {
     if (i.value == i.defaultValue) { i.value = ""; i.style.color = "#000"; }
 }
@@ -46,40 +46,47 @@ function searchkeypress(e)
     return true;
 }
 
-function changepassword(){
-
-var cur = document.getElementById("current").value;
-var newpassword = document.getElementById("new").value;
-var confirmnew = document.getElementById("confirmnew").value;
-if(cur == "" || newpassword == "" || confirmnew == "")
+function newadmin(){
+var name= document.getElementById("name").value;
+name = name.toUpperCase();
+var username= document.getElementById("username").value;
+username = username.toUpperCase();
+var password = document.getElementById("password").value;
+var confirm_password = document.getElementById("confirm_password").value;
+if(name == "" || username == "" || password == "" || confirm_password == "")
 {
-	document.getElementById("error").innerHTML = "All fields are compulsory:";
+	document.getElementById("error").innerHTML = "All fields are compulsory";
 	return false; 
 
 }
-else if(newpassword != confirmnew)
+else if ( password != confirm_password)
 {
-	document.getElementById("error").innerHTML = "New passwords don't match :";
-	return false; 
+document.getElementById("error").innerHTML = "Passwords don't match";
+return false;
 }
-
 else
 	{	
-	var url = 'http://localhost:4000/api/changepassword/admin';
+	var url = 'http://localhost:4000/api/newadmin';
 	var xml = new XMLHttpRequest();
 	xml.open('POST' , url ,true);
 	xml.withCredentials = true;
 	xml.setRequestHeader( 'Access-Control-Allow-Origin', '*');
 	xml.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-	xml.send(JSON.stringify({ 'currentpassword': cur, 'newpassword': newpassword }));
+	xml.send(JSON.stringify({ 'username': username, 'name': name , 'password' : password}));
 	xml.onreadystatechange = processRequest;
 
 	function processRequest(){
 	if(xml.readyState == 4 && xml.status == 200){
-		response = JSON.parse(xml.responseText);
-		document.getElementById("error").innerHTML = response["status"];
-		document.getElementById('changepassword').reset();		//to reset the form
-
+		response = JSON.parse(xml.responseText);	
+		if(response['status'] == "Already exists"){
+			document.getElementById("error").innerHTML = username + " already exists";
+			document.getElementById('newadmin_form').reset();
+		}
+		else if(response['status'] == 'admin added')
+		{
+			document.getElementById("error").innerHTML = username +" added";
+			document.getElementById('newadmin_form').reset();  
+		}
 }
 	  
 	}
