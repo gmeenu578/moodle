@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Update Scores</title>
+<link rel="icon" href="../images/icon.jpg" type="image/gif" >
+<link rel="stylesheet" href="../static/updatescores/css/style.css"/>
+<!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Roboto:400"/> -->
+<script src="../static/updatescores/js/updatescores.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    var cookie = getCookies('userid');
+    var type = getCookies('type');
+    if(cookie == "" || type == ""){
+      window.location = 'login.html';
+    } 
+    else if(cookie != "" && type == "student" ){
+      logout()
+    }
+  </script>
+<div class = "title">
+<h1> Academic Information Management , NMAMIT </h1>
+  <input type="button" value="Logout" id = "logout" onclick = "logout()" />
+</div>
+<div class = "menu">
+<nav>
+  <ul class="nav">
+    <li><a href="AIM_home.html">Home</a>
+	</li>
+      <li><a href="#">Courses</a>
+    <ul>
+      <li><a href = "addcourse.html">Add Course</a></li>
+    </ul>
+  </li>
+    <li><a href="#">Student</a>
+      <ul>
+        <li><a href="addstudent.html">Add Student</a></li>
+        <li><a href="viewupdate.html">View</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+<div class = "update" id="option-div">
+<script type="text/javascript"> fetchcourses()</script>
+<div class = "custom-select"  style="width:300px; margin: 5px 5px 5px 5px;">
+<select id = "courses">
+</select>
+</div>
+ <button class = "button" id = "submit" onclick="fetchstudents()">Submit</button>  
+</div>
+<div id = "table" style = "visibility: hidden" >
+    <table id="table-students" style="color:#333333;border-collapse:collapse; margin-top: 40px">
+   </table>
+</div>
+<div  id="option-div" style = "visibility: hidden">
+<button class = "buttondown" id = "edit" onclick = "showeditboxes()">Add New Marks</button>
+<button class = "buttondown" id = "updatescores" onclick="updatescores()">Update Scores </button>
+</div>
+</body>
+</html>

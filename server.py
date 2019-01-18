@@ -160,6 +160,71 @@ def newadmin():
     except:
         return jsonify({"status" : 'Already exists'})
 
+@app.route('/api/updatescores/column/<COLUMN_NAME>', methods=['POST','GET'])       #update of a single student
+def updatescoresbycourse(COLUMN_NAME):
+    data = request.get_json()
+    cursor , conn = connection()
+    for key in data:
+        sql = "update studentsdata set {0} = '{1}' where usn = '{2}'  ".format(COLUMN_NAME,data[key],key);
+        cursor.execute(sql)
+        print(sql)
+    conn.commit()
+    conn.close()
+    return "Updated Successfully"
+
+@app.route('/api/fetchcourses' , methods = ['POST','GET'])        #for showing drop down list view&update
+def fetchcourses():
+    cursor , conn  = connection()
+    sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'moodle' AND TABLE_NAME = 'studentsdata'"
+    cursor.execute(sql)
+    conn.close()
+    rows = [x for x in cursor]
+    cols = [x[0] for x in cursor.description]
+    ds = []
+    for row in rows:
+        d = {}
+        for prop, val in zip(cols, row):
+            if not val == "usn":
+                d[prop] = val
+                ds.append(d)
+    return jsonify(ds)
+@app.route('/api/fetchstudents/<COLUMN_NAME>' , methods = ['POST','GET'])
+def fetchstudents(COLUMN_NAME):
+    cursor , conn  = connection()
+    sql = "select a.usn , b.name , a.{0} from studentsdata a , credentials b where a.{0} <> 'no' and a.usn = b.userid".format(COLUMN_NAME);
+    cursor.execute(sql)
+    rows = [x for x in cursor]
+    cols = [x[0] for x in cursor.description]
+    ds = []
+    for row in rows:
+        d = {}
+        for prop, val in zip(cols, row):
+            d[prop] = val
+        ds.append(d)
+    return jsonify(ds)   
+ 
+@app.route('/api/fetchstudentdata' , methods = ['POST','GET'])         #data of a student
+def fetchstudentdata():
+    username = request.cookies.get('userid')
+    cursor , conn  = connection()
+    sql = "select * from studentsdata where usn = %s"
+    cursor.execute(sql,(username,))
+    conn.close()
+    rows = [x for x in cursor]
+    cols = [x[0] for x in cursor.description]
+    ds = []
+    for row in rows:
+        d = {}
+        for prop, val in zip(cols, row):
+            if not val == 'no':
+                d[prop] = val   
+        ds.append(d)   
+    json_data = json.dumps(ds)
+    json_data = json_data[1:-1]
+    json_obj = json.loads(json_data)
+    return jsonify(json_obj)
+
+
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=4000, debug=True)
