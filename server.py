@@ -223,6 +223,42 @@ def fetchstudentdata():
     json_data = json_data[1:-1]
     json_obj = json.loads(json_data)
     return jsonify(json_obj)
+@app.route('/api/enrollNewCourse/<COLUMN_NAME>/<usn>' , methods = ['POST','GET'])
+def enrollNewCourse(COLUMN_NAME , usn):
+    cursor , conn  = connection()
+    sql = "update studentsdata set %s = '0/0' where usn = '%s' and %s = 'no'" % (COLUMN_NAME, usn, COLUMN_NAME)
+    print(sql)
+    cursor.execute(sql)
+    conn.commit()
+    conn.close()
+    return 'Enrolled Successfully'
+
+@app.route('/api/fetchdata/<usn>' , methods = ['POST','GET'])
+def fetchdata_by_usn(usn):
+    username = usn
+    try :
+    	cursor , conn  = connection()
+    	sql = "select * from studentsdata where usn = '{0}'".format(username);
+    	cursor.execute(sql)
+    	conn.close()
+    	rows = [x for x in cursor]
+    	cols = [x[0] for x in cursor.description]
+    	ds = []
+    	for row in rows:
+        	d = {}
+        	for prop, val in zip(cols, row):
+        		if not val == 'no':
+        			d[prop] = val
+        	ds.append(d)
+    	print(ds)   
+    	json_data = json.dumps(ds)
+    	json_data = json_data[1:-1]
+    	json_obj = json.loads(json_data)
+    	return jsonify(json_obj)
+    except Exception as e:
+    	print('Error is ', e)
+    	return jsonify({"status" : 'invalid usn'})
+
 
 
 
