@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>login</title>
+<link rel="icon" href="../images/icon.jpg" type="image/gif" >
+<link rel="stylesheet" href="../static/login/css/style.css"/>
+<script src="../static/login/js/login.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		var cookie = getCookies('userid');
+		var type = getCookies('type');
+		if(cookie != "" && type == "student" ){
+			window.location = 'studentdata.html';
+		}
+		else if(cookie != "" && type == "admin" ){
+			window.location = 'AIM_home.html';
+		}
+	</script>
+<div class="container">
+<div class="main">
+<h2>NMAM Institute of Technology</h2>
+<b><br><a href="adminlogin.html">login as Administrator?</a></br></b>
+<form>
+<label>User Name :</label> 
+<input type="text" name="username" id="username" value = "Enter USN"
+		onfocus="inputFocus(this)" onblur="inputBlur(this)" onkeypress="searchkeypress()" /> <span id ="error" > </span>
+		<br>
+<label>Password :</label>
+<input type="password" name="password" id="password" value = "Default:USN"
+        onfocus="inputFocus(this)" onblur="inputBlur(this)" onkeypress="searchkeypress()" />
+<input type="button" value="Login" id="submit" onclick="validate()"/>
+</form>
+</div>
+</div>
+</body>
+</html>

@@ -21,8 +21,9 @@ xml.onreadystatechange = processRequest;
 function processRequest(){
 	if(xml.readyState == 4 && xml.status == 200){
 		response = JSON.parse(xml.responseText);
-		if(response['status'] == 0)
+		if(response['status'] == 0){
 			document.getElementById("error").innerHTML = "Incorrect Combination";
+		}
 		else if(response['status'] == 1)
 		{
 			window.location = "AIM_home.html";
@@ -64,4 +65,20 @@ function searchkeypress(e)
         return false;
     }
     return true;
+}
+function clearcookies(cname)
+{
+	var cookies = document.cookie.split(";");
+
+	for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = cname + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT ; path = /;";
+    }
+}
+function logout(){
+clearcookies('userid');
+clearcookies('type');
+window.location = "login.html"
 }

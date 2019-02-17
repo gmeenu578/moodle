@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>AIM Home</title>
+<link rel="icon" href="../images/icon.jpg" type="image/gif" >
+<link rel="stylesheet" href="../static/AIM_home/css/style.css"/>
+<script src="../static/AIM_home/js/AIM_home.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+  var cookie = getCookies('userid');
+  var type = getCookies('type');
+  if(cookie == "" || type == ""){
+    window.location = 'login.html';
+  }
+  else if(cookie != "" && type == "student" ){
+    logout()
+  }
+  else fetchname();
+</script>
+<div class = "title">
+<h1> Academic Information Management,NMAMIT </h1>
+<b><p id = "name">WELCOME </p></b>
+<form id = "logout">
+<label>
+<input type="button" value="Logout" onclick = "logout()" />
+</label>
+</form>	
+<a id = "changepassword" href = "changepassword_admin.html"><b>CHANGE PASSWORD</b></a>
+<a id = "newadmin" href = "newadmin.html"><b>REGISTER NEW ADMIN</b></a>
+</div>
+<div class = "menu">
+<nav>
+<ul class="nav">
+  <li><a href="#">Courses</a>
+  <ul>
+  	<li><a href = "addcourse.html">Add Course</a></li>
+  	<li><a href = "updatescores.html">Update Scores</a></li>
+  </ul>
+</li>
+  <li><a href="#">Student</a>
+    <ul>
+      <li><a href="addstudent.html">Add Student</a></li>
+      <li><a href="viewupdate.html">View</a></li>
+    </ul>
+  </li>
+</ul>
+</nav>
+</div>
+<img src="../images/nmamit.jpg" alt="NMAMIT">
+</body>
+</html>	

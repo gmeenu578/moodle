@@ -13,7 +13,7 @@ function getCookies(cname) {
 		    }
     		return "";
 		}
-		
+
 function inputFocus(i) {
     if (i.value == i.defaultValue) { i.value = ""; i.style.color = "#000"; }
 }

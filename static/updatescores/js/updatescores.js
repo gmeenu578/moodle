@@ -133,7 +133,7 @@ for(var i=0; i<tableElem.length; i++){
 let elem = tableElem[i];
 if(i !== 0){
 	var usn = elem.cells[0].innerText;
-	usn = usn.trim() //return string w/o any leading or trailing white spaces
+	usn = usn.trim()
 	var prevMarks = elem.cells[2].innerText;
 	var score = parseInt(elem.cells[3].children[0].value);
 	var outOf = parseInt(elem.cells[4].children[0].value);

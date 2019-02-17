@@ -13,7 +13,7 @@ function getCookies(cname) {
 		    }
     		return "";
 		}
-		
+
 function inputFocus(i) {
     if (i.value == i.defaultValue) { i.value = ""; i.style.color = "#000"; }
 }
@@ -31,6 +31,7 @@ function clearcookies(cname)
         var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
         document.cookie = cname + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT ; path = /;";
     }
+    window.location = "login.html";
 }
 
 
@@ -78,13 +79,24 @@ else
 	if(xml.readyState == 4 && xml.status == 200){
 		response = JSON.parse(xml.responseText);
 		document.getElementById("error").innerHTML = response["status"];
-		document.getElementById('changepassword').reset();		//to reset the form
-
+		document.getElementById('changepassword').reset(); //to reset the form
 }
 	  
 	}
 }
 
+}
+function clearcookies(cname)
+{
+	 console.log('clearcookies');
+	var cookies = document.cookie.split(";");
+
+	for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = cname + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT ; path = /;";
+    }
 }
 function logout(){
 clearcookies('userid');

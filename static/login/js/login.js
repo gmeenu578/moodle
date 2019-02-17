@@ -1,5 +1,6 @@
 function validate()
 {
+	
 var username = document.getElementById("username").value;
 var password = document.getElementById("password").value;
 if(username == "Enter USN" || password == "Default:USN")
@@ -11,8 +12,8 @@ if(username == "Enter USN" || password == "Default:USN")
 var url = 'http://localhost:4000/api/login/student';
 var xml = new XMLHttpRequest();
 xml.open('POST' , url ,true);
-xml.withCredentials = true;//to allow cookies
- xml.setRequestHeader( 'Access-Control-Allow-Origin', '*');//to allow cross origin
+xml.withCredentials = true;
+xml.setRequestHeader( 'Access-Control-Allow-Origin', '*');
 xml.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 xml.send(JSON.stringify({ 'username': username, 'password': password}));
 xml.onreadystatechange = processRequest;
@@ -26,7 +27,6 @@ function processRequest(){
 			window.location = "studentdata.html";
 		}
 	}
-
 }
 
 
@@ -36,7 +36,7 @@ function inputFocus(i) {
 function inputBlur(i) {
     if (i.value == "") { i.value = i.defaultValue; i.style.color = "#888"; }
 }
-function getCookie(cname) {
+function getCookies(cname) {
 		    var name = cname + "=";
 		    var decodedCookie = decodeURIComponent(document.cookie);
 		    var ca = decodedCookie.split(';');
@@ -61,4 +61,20 @@ function searchkeypress(e)
         return false;
     }
     return true;
+}
+function clearcookies(cname)
+{
+	var cookies = document.cookie.split(";");
+
+	for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = cname + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT ; path = /;";
+    }
+}
+function logout(){
+clearcookies('userid');
+clearcookies('type');
+window.location = "login.html"
 }
