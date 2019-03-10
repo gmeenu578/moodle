@@ -10,86 +10,49 @@ will be able to add new courses, register new admins,update scores in
 existing courses,add new students,update score of student. The changes
 will be stored in database.
 
-## Getting Started
+## Acknowledgement
+The satisfactions that accompany the successful completion of any task
+would be incomplete without the mention of the people who made it
+possible. So i acknowledge all those whose guidance and encouragement
+served as a beacon of light and crowned our efforts with success.
+I am extremely thankful to our project guide Mr. Sudeepa K B, Dept. of
+CSE for his valuable guidance and advice. His willingness to motivate
+us contributed to our project.
+I would like to place on record our deep sense of gratitude to Dr. K R
+Udaya Kumar Reddy, HOD-Dept. of Computer Science and
+Engineering, NMAMIT, Nitte for having such courses in department
+which gives us opportunity to learn so much.
+I thank all the Teaching and Non-Teaching staff members of the
+department of CSE for providing resources for the completion of the
+project. Finally, I thank all those who have contributed directly or
+indirectly in making this project a grand success.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+### Softwares/Packages
 
-What things you need to install the software and how to install them
+This project, in its entirety, was built using the following language &
+libraries :
+1. MySQL : used to design the database , store and retrieve data of
+the students and admins.
+2. Python : used to handle server side of the website.The version used
+is 3.6.
+3. Javascript : used to handling client slide functions and posting
+requests on server.
+4. HTML/CSS : used for designing the web pages.
+5. Flask : used for handling XMLhttprequest on server side.
+6. Other utilities like sublime text , mySQLdb , DateTime were used
+for writing codes , creating connection , importing date & time
+respectively.
+7. Lucid chart: used to design the ER diagram given in previous
+section.
 
-```
-Give examples
-```
+### Screenshots
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+### References
+https://stackoverflow.com/
+https://www.w3schools.com/html/
+https://www.w3schools.com/sql/
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequests
+https://www.tutorialspoint.com/python
+https://https:/com/www.youtube.com
+https://www.geeksforgeeks.org/javascript-tutorial/
