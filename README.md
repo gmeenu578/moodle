@@ -11,17 +11,17 @@ existing courses,add new students,update score of student. The changes
 will be stored in database.
 
 ## Acknowledgement
-The satisfactions that accompany the successful completion of any task
+The satisfaction that accompany the successful completion of any task
 would be incomplete without the mention of the people who made it
 possible. So i acknowledge all those whose guidance and encouragement
-served as a beacon of light and crowned our efforts with success.
-I am extremely thankful to our project guide Mr. Sudeepa K B, Dept. of
+served as a beacon of light and crowned my efforts with success.
+I am extremely thankful to my project guide Mr. Sudeepa K B, Dept. of
 CSE for his valuable guidance and advice. His willingness to motivate
-us contributed to our project.
-I would like to place on record our deep sense of gratitude to Dr. K R
+me contributed to my project.
+I would like to place on record my deep sense of gratitude to Dr. K R
 Udaya Kumar Reddy, HOD-Dept. of Computer Science and
 Engineering, NMAMIT, Nitte for having such courses in department
-which gives us opportunity to learn so much.
+which gives me opportunity to learn so much.
 I thank all the Teaching and Non-Teaching staff members of the
 department of CSE for providing resources for the completion of the
 project. Finally, I thank all those who have contributed directly or
@@ -47,7 +47,7 @@ respectively.
 section.
 
 ### Screenshots
-#### login Page
+#### login page
 ![login](screenshots/login.png)
 
 #### admin home
