@@ -47,13 +47,16 @@ respectively.
 section.
 
 ### Screenshots
-1.login Page
+#### login Page
 ![login](screenshots/login.png)
-2.admin home
+
+#### admin home
 ![admin home](screenshots/AIM_Home.png)
-3.scorecard
+
+#### scorecard
 ![scorecard](screenshots/studentscore.png)
-4.update scores
+
+#### update scores
 ![update scores](screenshots/updatescore.png)
 
 ### References
