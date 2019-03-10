@@ -50,9 +50,13 @@ section.
 
 ### References
 https://stackoverflow.com/
+
 https://www.w3schools.com/html/
+
 https://www.w3schools.com/sql/
+
 https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequests
+
 https://www.tutorialspoint.com/python
-https://https:/com/www.youtube.com
+
 https://www.geeksforgeeks.org/javascript-tutorial/
